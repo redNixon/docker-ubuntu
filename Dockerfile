@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 MAINTAINER Red Nixon "info@rednixon.io"
 
 RUN apt-get update \
@@ -11,20 +11,11 @@ RUN apt-get update \
     nano \
     zip \
     unzip \
-    python-pip \
+    python3-pip \
     git \
     ca-certificates \
 	vim \
-	apache2 \
-	php7.0 \
-	php7.0-mbstring \
-	php-curl \
-	libapache2-mod-php 
-
-RUN sed -i -e 'sMDocumentRoot /var/www/htmlMDocumentRoot /var/www/publicMg' /etc/apache2/sites-available/000-default.conf
-COPY www-htaccess.conf /etc/apache2/conf-enabled/
-RUN chown -Rf www-data:www-data /var/www/
-RUN a2enmod php7.0 rewrite
+	apache2 
 
 # Add Scripts
 ADD ./start.sh /start.sh
